@@ -1,19 +1,18 @@
+import settings as setts
+from tools.models import MLModel
 import tools.data_handling as dtools
-import tools.plotting_tools as plotting
-import tools.models as models
 
-# Settings
-columns_to_exclude_from_model = ['yr']
-output_folder_data_analysis = "outputs/data_analysis/"
-output_folder_ml = "outputs/ml/"
 
-input_data = dtools.read_dataset("Bike-Sharing-Dataset/hour.csv", True)
-dtools.clean_data(input_data, columns_to_exclude_from_model)
+input_data = dtools.read_dataset(print_data_summary=False)
+dtools.clean_data(input_data)
 
-plotting.check_and_create_folder(output_folder_data_analysis)
-plotting.check_and_create_folder(output_folder_ml)
+if setts.do_input_data_analysis:
+    dtools.input_data_analysis(input_data)
 
-dtools.input_data_analysis(input_data, output_folder_data_analysis)
+ml_model = MLModel(setts.ml_model, input_data, setts.variables_for_training, setts.target_variable)
+ml_model.train_model()
+
+print("Done!")
 
 
 
