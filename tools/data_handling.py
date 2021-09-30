@@ -1,8 +1,9 @@
 import pandas as pd
-import tools.plotting_tools as plotting
-import settings as setts
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+import tools.plotting_tools as plotting
+import settings as setts
 
 
 # Import data as a pandas dataframe and print basic information
@@ -50,7 +51,7 @@ def clean_data(pd_data: pd.DataFrame):
 def input_data_analysis(pd_data: pd.DataFrame):
     output_folder = setts.output_folder_data_analysis
     variables_distribution_output_folder = output_folder + "variables_data_distribution/"
-    plotting.check_and_create_folder(variables_distribution_output_folder)
+    check_and_create_folder(variables_distribution_output_folder)
 
     columns_in_df = list(pd_data)
     categorical_variables = list(set(setts.categorical_variables).intersection(columns_in_df))
@@ -134,8 +135,8 @@ def get_ml_data(pd_data: pd.DataFrame, do_data_standardization: bool = True):
     print("** INFO: Using only data from " + str(setts.variables_for_training))
     ml_data = pd_data[setts.variables_for_training]
 
-    # Saving selected data for further use (TODO: check if this is efficient and/or needed for large datasets)
-    ml_data.to_pickle(setts.output_folder_ml + 'ml_data.pkl')
+    # # Saving selected data for further use
+    # ml_data.to_pickle(setts.output_folder_ml + 'ml_data.pkl')
 
     # Treating all the nominal variables at once using dummy variables
     numeric_ml_data = pd.get_dummies(ml_data)
@@ -159,3 +160,11 @@ def get_ml_data(pd_data: pd.DataFrame, do_data_standardization: bool = True):
 
     return x, y, x_train, x_test, y_train, y_test
 
+
+def check_and_create_folder(folder_path, creation_info=True):
+    try:
+        os.makedirs(folder_path)
+        print('output folder has been created: ' + folder_path)
+    except:
+        if creation_info:
+            print(folder_path + ' Already exists -->> Content will be overwritten.')

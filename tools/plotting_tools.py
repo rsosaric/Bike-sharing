@@ -1,17 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import os
 import settings as setts
-
-
-def check_and_create_folder(folder_path, creation_info=True):
-    try:
-        os.makedirs(folder_path)
-        print('output folder has been created: ' + folder_path)
-    except:
-        if creation_info:
-            print(folder_path + ' Already exists -->> Content will be overwritten.')
 
 
 def save_py_fig_to_file(fig, output_name, plot_dpi=None):

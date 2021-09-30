@@ -7,7 +7,12 @@ do_input_data_analysis = False  # Produce plots and correlation studies for the 
 target_variable = 'cnt'
 variables_for_training = ['season', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'registered']
 test_sample_size = 0.3
-ml_model = 'LinearRegression'
+# ml_model = 'LinearRegression'
+# ml_model = 'KNN'
+# ml_model = 'DecisionTreeRegressor'
+# ml_model = 'RandomForestRegressor'
+# ml_model = 'AdaBoost'
+ml_model = 'XGBoost'
 
 output_folder_data_analysis = "outputs/data_analysis/"
 output_folder_ml = "outputs/ml/"
