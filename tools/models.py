@@ -283,16 +283,14 @@ class MLModel:
     # take inputs and return prediction
     def generate_prediction_from_values(self, input_registered, input_month, input_hour, input_weekday):
         # Creating a data frame for the model input
-        if type(input_registered) == str:
-            input_data = pd.DataFrame(
-                data=[[input_registered, input_month, input_hour, input_weekday]],
-                columns=['registered', 'mnth', 'hr', 'weekday'])
-        elif type(input_registered) == list:
+        if type(input_registered) == list:
             input_data = pd.DataFrame(
                 data=list(zip(input_registered, input_month, input_hour, input_weekday)),
                 columns=['registered', 'mnth', 'hr', 'weekday'])
         else:
-            raise AssertionError("Input values most be (str, str, ...) or (list, list, ...)")
+            input_data = pd.DataFrame(
+                data=[[input_registered, input_month, input_hour, input_weekday]],
+                columns=['registered', 'mnth', 'hr', 'weekday'])
 
         predictions = self.predict(input_data=input_data)
 
