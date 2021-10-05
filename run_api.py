@@ -14,8 +14,10 @@ def prediction_api():
         hr_value = float(request.args.get('hr'))
         weekday_value = float(request.args.get('weekday'))
 
+        # Setting ML model
         ml_model = MLModel(setts.ml_model, settings=setts)
 
+        # Training if needed and get predictions
         prediction_from_api = ml_model.generate_prediction_from_values(input_registered=registered_value,
                                                                        input_month=mnth_value,
                                                                        input_hour=hr_value,
