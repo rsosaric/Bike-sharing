@@ -20,10 +20,7 @@ import tools.plotting_tools as plotting
 
 # Class inspired on https://thinkingneuron.com/bike-rental-demand-prediction-case-study-in-python/
 class MLModel:
-    def __init__(self, model_name: str,
-                 settings,  # Settings
-                 do_extra_train_model_studies: bool = False,
-                 reset_training: bool = False):
+    def __init__(self, model_name: str, settings):
         print("\n==>> Setting model: " + model_name)
         self.__model_name = model_name
 
@@ -66,7 +63,7 @@ class MLModel:
 
         self.__predictor_scaler = MinMaxScaler()
 
-        self.__do_extra_train_model_studies = do_extra_train_model_studies
+        self.__do_extra_train_model_studies = settings.do_extra_train_model_studies
         if self.__do_extra_train_model_studies:
             print(self.__model)
 
@@ -80,7 +77,7 @@ class MLModel:
         self.__output_folder = self.__settings.output_folder_ml + self.__model_name + "/"
         self.__test_sample_size = settings.test_sample_size
 
-        self.__reset_training = reset_training
+        self.__reset_training = settings.force_training
         if self.__reset_training:
             print("** INFO: Re-training model (set in settings)")
 

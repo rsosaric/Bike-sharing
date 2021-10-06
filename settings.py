@@ -13,8 +13,8 @@ do_extra_train_model_studies = False  # Produce analysis of model training perfo
 force_training = False  # If True: re-train model even if the final model outputs are available
 
 target_variable = 'cnt'  # variable to be predicted
-# variables_for_training = ['season', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'registered']
-variables_for_training = ['registered', 'mnth', 'hr', 'weekday']  # variables used for training
+variables_for_training = ['registered', 'season', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit']
+variables_for_training = ['registered', 'hr', 'mnth', 'workingday', 'holiday']  # variables used for training
 test_sample_size = 0.3  # part of data to be used as test data
 
 # ** Available models (also check in models.py) **
@@ -24,5 +24,3 @@ test_sample_size = 0.3  # part of data to be used as test data
 # ml_model = 'RandomForestRegressor'
 # ml_model = 'AdaBoost'
 ml_model = 'XGBoost'  # ML model to use
-
-

@@ -52,23 +52,8 @@ def input_data_analysis(pd_data: pd.DataFrame, output_folder: str, target_variab
     categorical_variables = list(set(categorical_variables).intersection(columns_in_df))
     continuous_variables = list(set(continuous_variables).intersection(columns_in_df))
 
-    # Plotting of the variables distributions
-    plotting.plot_several_hists_from_data_frame(pd_data, col_labels=continuous_variables,
-                                                output_file=variables_distribution_output_folder + "continuous_variables_hists" + plot_extension)
-    for i_var in continuous_variables:
-        plot_name = i_var + "_vs_" + target_variable + '_kde' + plot_extension
-        print("plotting " + plot_name)
-        plotting.plot_continuous_data_vs_reference_variable(pd_data, col_label=i_var,
-                                                            reference_variable=target_variable,
-                                                            plot_type='kde',
-                                                            output_file=variables_distribution_output_folder + plot_name)
-
-        plot_name = i_var + "_vs_" + target_variable + '_2d_map' + plot_extension
-        print("plotting " + plot_name)
-        plotting.plot_continuous_data_vs_reference_variable(pd_data, col_label=i_var,
-                                                            reference_variable=target_variable,
-                                                            plot_type='2d_map',
-                                                            output_file=variables_distribution_output_folder + plot_name)
+    plotting.plot_hist_from_data_frame(pd_data, col_label=target_variable,
+                                       output_file=variables_distribution_output_folder + target_variable + plot_extension)
 
     for i_var in categorical_variables:
         count_plot_name = i_var + plot_extension
@@ -89,6 +74,24 @@ def input_data_analysis(pd_data: pd.DataFrame, output_folder: str, target_variab
                                                              reference_variable=target_variable,
                                                              plot_type="box",
                                                              output_file=variables_distribution_output_folder + plot_name)
+
+    # Plotting of the variables distributions
+    plotting.plot_several_hists_from_data_frame(pd_data, col_labels=continuous_variables,
+                                                output_file=variables_distribution_output_folder + "continuous_variables_hists" + plot_extension)
+    for i_var in continuous_variables:
+        plot_name = i_var + "_vs_" + target_variable + '_kde' + plot_extension
+        print("plotting " + plot_name)
+        plotting.plot_continuous_data_vs_reference_variable(pd_data, col_label=i_var,
+                                                            reference_variable=target_variable,
+                                                            plot_type='kde',
+                                                            output_file=variables_distribution_output_folder + plot_name)
+
+        plot_name = i_var + "_vs_" + target_variable + '_2d_map' + plot_extension
+        print("plotting " + plot_name)
+        plotting.plot_continuous_data_vs_reference_variable(pd_data, col_label=i_var,
+                                                            reference_variable=target_variable,
+                                                            plot_type='2d_map',
+                                                            output_file=variables_distribution_output_folder + plot_name)
 
     # Relationship exploration (Categorical Variables)
     print("\n     *******  Relationship exploration (Categorical Variables)(ANOVA Results)  ******* \n")

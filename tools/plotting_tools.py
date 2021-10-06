@@ -16,6 +16,18 @@ def plot_several_hists_from_data_frame(data_frame: pd.DataFrame, col_labels: lis
     hist_plot = data_frame.hist(bins=15, column=col_labels, grid=False,
                                 figsize=(18, 10), color='#86bf91')
 
+    [x.title.set_size(18) for x in hist_plot.ravel()]
+
+    ratio_hist_ax = hist_plot[0][0]
+    save_py_fig_to_file(ratio_hist_ax.get_figure(), output_file, plot_dpi=setts.plot_dpi)
+
+
+def plot_hist_from_data_frame(data_frame: pd.DataFrame, col_label: str, output_file: str = ""):
+    hist_plot = data_frame.hist(bins=15, column=col_label, grid=False,
+                                figsize=(8, 8), color='#86bf91')
+
+    [x.title.set_size(18) for x in hist_plot.ravel()]
+
     ratio_hist_ax = hist_plot[0][0]
     save_py_fig_to_file(ratio_hist_ax.get_figure(), output_file, plot_dpi=setts.plot_dpi)
 
@@ -38,6 +50,7 @@ def plot_categorical_data_vs_reference_variable(data_frame: pd.DataFrame, col_la
         fig = sns.catplot(x=col_label, y=reference_variable, data=data_frame, kind="box")
     else:
         raise AssertionError("plot mode not implemented")
+
     save_py_fig_to_file(fig, output_file, plot_dpi=setts.plot_dpi)
 
 
