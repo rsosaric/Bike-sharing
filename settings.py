@@ -10,11 +10,11 @@ continuous_variables = ['temp', 'atemp', 'hum', 'windspeed', 'registered']  # Na
 
 do_input_data_analysis = False  # Produce plots and correlation studies for the input data
 do_extra_train_model_studies = False  # Produce analysis of model training performance
-force_training = False  # If True: re-train model even if the final model outputs are available
+force_training = True  # If True: re-train model even if the final model outputs are available
 
 target_variable = 'cnt'  # variable to be predicted
-variables_for_training = ['registered', 'season', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit']
-variables_for_training = ['registered', 'hr', 'mnth', 'workingday', 'holiday']  # variables used for training
+# variables_for_training = ['registered', 'season', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit']
+variables_for_training = ['registered', 'hr', 'mnth', 'weekday']  # variables used for training
 test_sample_size = 0.3  # part of data to be used as test data
 
 # ** Available models (also check in models.py) **
