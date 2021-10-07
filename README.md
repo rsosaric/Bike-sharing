@@ -2,9 +2,9 @@
 ### * Conda environment:
 The file conda_environment.yml contains a working conda environment for this code.
 - install conda or anaconda
-- run in terminal: 
-  - conda env create -f environment.yml
-  - conda activate mlearn2
+- run in terminal (LINUX, macOS): 
+  - conda env create -f conda_environment.yml
+  - conda activate basic_ml
 
 ### * Code structure:
 The code can be run in two ways:
